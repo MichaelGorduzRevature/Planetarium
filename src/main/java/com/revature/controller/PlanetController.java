@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.models.Moon;
@@ -15,7 +16,7 @@ public class PlanetController {
 	
 	private PlanetService pService = new PlanetService();
 
-	public void getAllPlanets(Context ctx) {
+	public void getAllPlanets(Context ctx) throws SQLException {
 		
 		ctx.json(pService.getAllPlanets()).status(200);
 	}

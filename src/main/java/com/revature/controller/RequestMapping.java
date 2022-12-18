@@ -13,13 +13,22 @@ public class RequestMapping {
 	public static void setupEndpoints(Javalin app) {
 		
 		// Authenticate user and create a session for the user, sending username/password in the body as JSON
-		app.post("/login", ctx -> authController.authenticate(ctx));
+		app.post("/login", ctx -> {
+			authController.authenticate(ctx);
+		
+		});
 
 		// Register a new user, sending username/password in the body as JSON
-		app.post("/register", ctx -> authController.register(ctx));
+		app.post("/register", ctx -> {
+            authController.register(ctx);
+		   
+		}); 
 		
 		// Invalidate session
-		app.post("/logout", ctx -> authController.invalidateSession(ctx));
+		app.post("/logout", ctx -> {
+			 authController.invalidateSession(ctx);
+			 
+		});
 		
 		// Check for valid sessions
 		// Throw a custom exception if a session is not valid
@@ -43,7 +52,7 @@ public class RequestMapping {
 		app.get("api/planet/{name}", ctx -> planetController.getPlanetByName(ctx));
 		
 		// Get a planet with matching ID
-		app.get("api/planet/{id}", ctx -> planetController.getPlanetByID(ctx));
+		app.get("api/planet/id/{id}", ctx -> planetController.getPlanetByID(ctx));
 		
 		// Get moons associated with a planet
 		app.get("api/planet/{id}/moons", ctx -> moonController.getPlanetMoons(ctx));
@@ -55,7 +64,7 @@ public class RequestMapping {
 		app.get("api/moon/{name}", ctx -> moonController.getMoonByName(ctx));
 		
 		// Get a moon with matching ID
-		app.get("api/moon/{id}", ctx -> moonController.getMoonById(ctx));
+		app.get("api/moon/id/{id}", ctx -> moonController.getMoonById(ctx));
 		
 
 		// Create a new planet, sending the data in the body as JSON

@@ -1,5 +1,6 @@
 package com.revature.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.revature.models.Moon;
@@ -13,7 +14,7 @@ public class MoonController {
 	
 	private MoonService mService = new MoonService();
 
-	public void getAllMoons(Context ctx) {
+	public void getAllMoons(Context ctx) throws SQLException {
 		
 		ctx.json(mService.getAllMoons()).status(200);
 	}
@@ -57,7 +58,7 @@ public class MoonController {
 		ctx.json("Moon successfully deleted").status(202);
 	}
 	
-	public void getPlanetMoons(Context ctx) {
+	public void getPlanetMoons(Context ctx) throws SQLException {
 		
 		int planetId = ctx.pathParamAsClass("id", Integer.class).get();
 		
