@@ -180,3 +180,21 @@ Response: [500 Server Error], execution took 6.29 ms
 Response: [500 Server Error], execution took 9.15 ms
 Response: [500 Server Error], execution took 8.53 ms
 Response: [500 Server Error], execution took 6.07 ms
+Response: [200 OK], execution took 711.41 ms
+Response: [200 OK], execution took 314.92 ms
+Response: [201 Created], execution took 408.23 ms
+Response: [200 OK], execution took 309.15 ms
+Response: [200 OK], execution took 294.25 ms
+Response: [200 OK], execution took 320.58 ms
+Response: [200 OK], execution took 574.93 ms
+Response: [200 OK], execution took 308.34 ms
+Response: [200 OK], execution took 301.45 ms
+Response: [201 Created], execution took 403.48 ms
+Response: [201 Created], execution took 312.41 ms
+Response: [200 OK], execution took 306.36 ms
+Response: [202 Accepted], execution took 367.92 ms
+Response: [202 Accepted], execution took 294.36 ms
+Response: [201 Created], execution took 363.07 ms
+Response: [202 Accepted], execution took 375.98 ms
+Response: [202 Accepted], execution took 305.84 ms
+Response: [201 Created], execution took 399.17 ms
