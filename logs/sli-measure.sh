@@ -1,10 +1,11 @@
 echo "$(grep Response staticLogs.log)"  > http.sh
-echo "Filtered INFO from 'staticLogs' was pushed into a 'http.sh' file"
 httpCodes=$(grep Response staticLogs.log | cut -f 2 -d [ | cut -d ] -f 1 | cut -d " " -f 1)
 httpRequestTotal=0
 httpFailures=0
 
-# echo "$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " "))" > latency.sh
+echo "$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " ")" > latency.sh
+latency=$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " ")
+
 
 for response in $httpCodes
 do
@@ -15,21 +16,21 @@ do
 	fi
 done
 
-httpSuccess=$(($httpRequestTotal - $httpFailures))
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo "Total http requests: " $httpRequestTotal 
-echo "SUCCESSFUL http requests: " $httpSuccess 
-echo "BAD http requests: " $httpFailures
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
 result=$(awk "BEGIN {print $httpSuccess / $httpRequestTotal * 100; exit}")
+totalMs=$(awk '{Total=Total+$1} END{print Total}' latency.sh)
+avgMiliseconds=$(awk "BEGIN {print $totalMs / $httpRequestTotal; exit}")
 
-if [[ $result% > 98% ]]
+httpSuccess=$(($httpRequestTotal - $httpFailures))
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "Total http requests: " $httpRequestTotal 
+echo "Successful http requests: " $httpSuccess 
+echo "Bad http requests: " $httpFailures
+echo "Success http requests percentage : "$result%
+echo "Total latency time: "$totalMs "ms"
+echo "Average latency time: "$avgMiliseconds "ms"
 
-then
-	echo "HTTP success rate is $result%, SLO is being maintained"
-else
-	echo "HTTP success rate is $result%, SLO is NOT being maintained"
-fi
+# variableName=$(awk "BEGIN {print $var1 (+,-,/,*) $var2; exit}")
+
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 
