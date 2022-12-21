@@ -20,7 +20,7 @@ result=$(awk "BEGIN {print $httpSuccess / $httpRequestTotal * 100; exit}")
 totalMs=$(awk '{Total=Total+$1} END{print Total}' latency.sh)
 avgMiliseconds=$(awk "BEGIN {print $totalMs / $httpRequestTotal; exit}")
 
-httpSuccess=$(($httpRequestTotal - $httpFailures))
+httpSuccess=$(($httpRequestTotal / $httpFailures))
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Total http requests: " $httpRequestTotal 
 echo "Successful http requests: " $httpSuccess 
