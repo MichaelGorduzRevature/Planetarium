@@ -16,7 +16,7 @@ do
 	fi
 done
 
-result=$(awk "BEGIN {print $httpRequestTotal / $httpSuccess * 100; exit}")
+result=$(awk "BEGIN {print $httpSuccess / $httpRequestTotal * 100; exit}")
 totalMs=$(awk '{Total=Total+$1} END{print Total}' latency.sh)
 avgMiliseconds=$(awk "BEGIN {print $totalMs / $httpRequestTotal; exit}")
 
