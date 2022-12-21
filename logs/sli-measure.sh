@@ -4,7 +4,7 @@ httpRequestTotal=0
 httpFailures=0
 
 echo "$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " ")" > latency.sh
-latency=$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " ")
+# latency=$(grep ms http.sh | cut -f 2 -d , | cut -f 4 -d " ")
 
 
 for response in $httpCodes
@@ -16,11 +16,11 @@ do
 	fi
 done
 
-result=$(awk "BEGIN {print $httpSuccess / $httpRequestTotal * 100; exit}")
+result=$(awk "BEGIN {print $httpRequestTotal / $httpSuccess * 100; exit}")
 totalMs=$(awk '{Total=Total+$1} END{print Total}' latency.sh)
 avgMiliseconds=$(awk "BEGIN {print $totalMs / $httpRequestTotal; exit}")
 
-httpSuccess=$(($httpRequestTotal / $httpFailures))
+httpSuccess=$(($httpRequestTotal - $httpFailures))
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Total http requests: " $httpRequestTotal 
 echo "Successful http requests: " $httpSuccess 
