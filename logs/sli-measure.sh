@@ -25,7 +25,7 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "Total http requests: " $httpRequestTotal 
 echo "Successful http requests: " $httpSuccess 
 echo "Bad http requests: " $httpFailures
-echo "Success http requests percentage : "$result%
+echo "Success http requests percentage : "$result"%"
 echo "Total latency time: "$totalMs "ms"
 echo "Average latency time: "$avgMiliseconds "ms"
 
